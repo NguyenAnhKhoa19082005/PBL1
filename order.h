@@ -1,0 +1,10 @@
+struct System;
+void PrintMenu(System &sys);
+int findDrink(System &sys, string id);
+void ShowOrder(System &sys);
+void AddDrink(System &sys);
+void ChangeDrink(System &sys);
+void DeleteDrink(System &sys);
+char OrderMenu();
+void StartOrder(System &sys);
+int findInOrder(System &sys, string id);
