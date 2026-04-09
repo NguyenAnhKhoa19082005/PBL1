@@ -6,21 +6,56 @@
 void SaveBill(System &sys) {
     string dateStr = getCurrentDate();
     string filename = "data/output/" + dateStr + "_" +
-        sys.staffList[sys.currentStaff].id + "_" +
-        sys.staffList[sys.currentStaff].name + ".dat";
+                      sys.staffList[sys.currentStaff].id + "_" +
+                      sys.staffList[sys.currentStaff].name + ".dat";
 
     ofstream f(filename.c_str(), ios::app);
-    static int customer = 1;
-    f << "\nCUSTOMER " << customer++ << "\n";
+    if (!f.is_open()) return;
+
+    static int customerCount = 1;
+    string currentTime = getCurrentTime(); 
+
+    f << "----------------------------------------------------------------------------\n";
+    f << "|" << right << setw(40) << "CUSTOMER " << customerCount++ << setw(35) << " |\n";
+    f << "----------------------------------------------------------------------------\n";
+    
+    f << "Cashier's name: " << sys.staffList[sys.currentStaff].name << "\n";
+    f << "Time in:  " << dateStr << " " << currentTime << "\n";
+    f << "Time out: " << dateStr << " " << currentTime << "\n\n";
+
+    f << left << setw(35) << "| Description" 
+      << "| " << setw(10) << "Quantity" 
+      << "| " << setw(12) << "Unit price" 
+      << "| " << setw(12) << "Into money" << "|\n";
+    f << "----------------------------------------------------------------------------\n";
+
+    long long rawTotal = 0;
     for (int i = 0; i < sys.orderCount; i++) {
-        f << sys.orderList[i].name << " | "
-          << sys.orderList[i].quantity << " | "
-          << (long long)sys.orderList[i].price * sys.orderList[i].quantity << "\n";
+        long long price = sys.orderList[i].price;
+        int qty = sys.orderList[i].quantity;
+        long long intoMoney = price * qty;
+        rawTotal += intoMoney;
+
+        f << "| " << left << setw(33) << sys.orderList[i].name 
+          << "| " << right << setw(8) << qty << "  "
+          << "| " << right << setw(10) << price << "  "
+          << "| " << right << setw(10) << intoMoney << "  |\n";
     }
-    f << "Total: " << CalcTotal(sys) << " VND\n";
-    f << "STAFF: " << sys.staffList[sys.currentStaff].name << "\n";
+
+    f << "---------------------------------------------------------------------------\n\n";
+
+    long long finalTotal = CalcTotal(sys);
+    long long discount = rawTotal - finalTotal;
+
+    f << "Total: " << rawTotal << " VND\n";
+    f << "Discount: " << discount << " VND\n";
+    f << "Total after discount: " << finalTotal << " VND\n";
+    f << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n\n";
+
     f.close();
 }
+
+
 
 void SaveEndShift(System &sys) {
     string dateStr = getCurrentDate();
@@ -44,14 +79,27 @@ long long CalcTotal(System &sys) {
 
 
 void ProcessPayment(System &sys) {
-    cout << "\n=========== BILL ===========\n";
-    cout << setw(25) << left << "| Name" << setw(5) << "| Qty " << "| Price\n";
+    cout << "\n======================== BILL ===============================\n";
+    cout << left << setw(5)  << "No" 
+         << "| " << setw(30) << "Description" 
+         << "| " << setw(10)  << "Qty" 
+         << "| " << "Price" << "\n";
+    cout << "-------------------------------------------------------------\n";
+
     for (int i = 0; i < sys.orderCount; i++) {
         long long money = (long long)sys.orderList[i].price * sys.orderList[i].quantity;
-        cout << i + 1 << ". " << setw(24) << left << sys.orderList[i].name << setw(2) << sys.orderList[i].quantity << "  " << money << " VND\n";
+        
+        cout << left << setw(5)  << i + 1
+             << "| " << setw(30) << sys.orderList[i].name 
+             << "| " << setw(10)  << sys.orderList[i].quantity 
+             << "| " << money << " VND\n";
     }
+
     long long total = CalcTotal(sys);
+    cout << "-------------------------------------------------------------\n";
     cout << "TOTAL: " << total << " VND\n";
+    
+    // Cập nhật số lượng bán và doanh thu
     for (int i = 0; i < sys.orderCount; i++) {
         int pos = findDrink(sys, sys.orderList[i].id);
         if (pos != -1) sys.menuList[pos].sold += sys.orderList[i].quantity;
@@ -61,6 +109,7 @@ void ProcessPayment(System &sys) {
     SaveBill(sys);
     cout << "Payment success!\n";
 }
+
 
 
 
@@ -92,10 +141,10 @@ void SaveThongKe(System &sys) {
 
     f << "----------------------------------------------------------------------------------------------------\n";
 
-    f << "\n===== STAFF REVENUE =====\n";
+    f << "\n================= STAFF REVENUE ==================\n";
     for(int i = 0; i < sys.staffCount; i++){
         if (sys.staffList[i].revenue > 0) { 
-            f << "- " << left << setw(25) << sys.staffList[i].name 
+            f << "- " << left << setw(20) << sys.staffList[i].name 
               << ": " << sys.staffList[i].revenue << " VND\n";
             f << "  Login: " << sys.staffList[i].login 
               << " | Logout: " << sys.staffList[i].logout << "\n\n";
