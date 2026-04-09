@@ -11,18 +11,20 @@
 void Print() {
     cout << "==================================================================================================\n";
     cout << "|                                                                                                |\n";
-    cout << "|                               _ PBL 1: DO AN LAP TRINH TINH TOAN _                             |\n";
+    cout << "|                               _ PBL 1: DU AN CO SO LAP TRINH _                                 |\n";
     cout << "|                               ------------------------------------                             |\n";
     cout << "|                                            DE TAI 702                                          |\n"; 
     cout << "|                        XAY DUNG UNG DUNG DAT MON AN VA THANH TOAN DON HANG                     |\n";
-    cout << "|                                             *******                                            |\n";
+    cout << "|                                             *****                                              |\n";
     cout << "|                                                                                                |\n";
-    cout << "|              Giang vien huong dan: Th.S TRAN THI THUY TIEN                                     |\n";
+    cout << "|              Giang vien huong dan: Th.S TRAN HO THUY TIEN                                      |\n";
     cout << "|              Sinh vien thuc hien:                                                              |\n";
-    cout << "|                 1. Sinh vien 1: NGUYEN ANH KHOA  Lop: 23PFIEV3 Nhom: 23.89                     |\n";
-    cout << "|                 2. Sinh vien 2: NGUYEN VAN DUY   Lop: 23PFIEV3 Nhom: 23.89                     |\n";
-    cout << "|                 3. Sinh vien 3: DOAN NGOC CUONG  Lop: 23PFIEV3 Nhom: 23.89                     |                                                           |\n";
+    cout << "|                     1. NGUYEN ANH KHOA  Lop: 23PFIEV3  Ma SV: 123230154                        |\n";
+    cout << "|                     2. NGUYEN VAN DUY   Lop: 23PFIEV3  Ma SV: 123230145                        |\n";
+    cout << "|                     3. DOAN NGOC CUONG  Lop: 23PFIEV3  Ma SV: 123230142                        |                                                           |\n";
     cout << "==================================================================================================\n";
+    
+
     
 
     cin.get(); // Dừng lại chờ người dùng nhấn Enter

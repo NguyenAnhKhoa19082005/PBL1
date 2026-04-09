@@ -5,14 +5,14 @@
 | 2     | Tra sua Kem trung                            | 0         | 23000       | 0               |
 | 3     | Tra sua Rainbow                              | 0         | 23000       | 0               |
 | 4     | Tra sua Pho mai vien                         | 0         | 32000       | 0               |
-| 5     | Tra Dao                                      | 0         | 26000       | 0               |
+| 5     | Tra sua Cookie Kem sua                       | 20        | 29000       | 580000          |
 | 6     | Tac xi muoi                                  | 0         | 22000       | 0               |
 | 7     | Tra Xoai nha dam                             | 0         | 27000       | 0               |
 | 8     | Tra Lai canh mat ong                         | 0         | 25000       | 0               |
 | 9     | Sua tuoi Suong sao                           | 0         | 26000       | 0               |
 | 10    | O long Sua tuoi                              | 0         | 27000       | 0               |
 | 11    | Tra Xoai Kem sua                             | 0         | 28000       | 0               |
-| 12    | Tra sua Cookie Kem sua                       | 0         | 29000       | 0               |
+| 12    | Tra Dao                                      | 0         | 26000       | 0               |
 | 13    | Matcha Oreo Kem sua                          | 0         | 33000       | 0               |
 | 14    | Chanh Tuyet xay                              | 0         | 28000       | 0               |
 | 15    | Tac xay                                      | 0         | 28000       | 0               |
@@ -21,9 +21,13 @@
 | 18    | Soda Blue Ocean                              | 0         | 22000       | 0               |
 | 19    | Tra gung nong                                | 0         | 22000       | 0               |
 | 20    | Yaourt Vai tuoi                              | 0         | 29000       | 0               |
+| 21    | Tra Chanh                                    | 0         | 21000       | 0               |
 ----------------------------------------------------------------------------------------------------
 
 ===== STAFF REVENUE =====
+- Nguyen Anh Khoa          : 580000 VND
+  Login: 22:43:08 | Logout: 22:43:19
+
 --------------------------------------------------
-TOTAL DAILY REVENUE: 0 VND
+TOTAL DAILY REVENUE: 580000 VND
 ==================================================

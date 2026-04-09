@@ -62,6 +62,8 @@ void ProcessPayment(System &sys) {
     cout << "Payment success!\n";
 }
 
+
+
 void SaveThongKe(System &sys) {
     string dateStr = getCurrentDate();
     string filename = "data/output/" + dateStr + "_ThongKe.dat";
