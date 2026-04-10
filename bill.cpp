@@ -78,11 +78,12 @@ long long CalcTotal(System &sys) {
 }
 
 
+
 void ProcessPayment(System &sys) {
     cout << "\n======================== BILL ===============================\n";
     cout << left << setw(5)  << "No" 
          << "| " << setw(30) << "Description" 
-         << "| " << setw(10)  << "Qty" 
+         << "| " << setw(10)  << "Quantity" 
          << "| " << "Price" << "\n";
     cout << "-------------------------------------------------------------\n";
 
@@ -91,15 +92,15 @@ void ProcessPayment(System &sys) {
         
         cout << left << setw(5)  << i + 1
              << "| " << setw(30) << sys.orderList[i].name 
-             << "| " << setw(10)  << sys.orderList[i].quantity 
-             << "| " << money << " VND\n";
+             << "| " << setw(10) << sys.orderList[i].quantity 
+             << "| " << money << " \n";
     }
 
     long long total = CalcTotal(sys);
     cout << "-------------------------------------------------------------\n";
     cout << "TOTAL: " << total << " VND\n";
     
-    // Cập nhật số lượng bán và doanh thu
+
     for (int i = 0; i < sys.orderCount; i++) {
         int pos = findDrink(sys, sys.orderList[i].id);
         if (pos != -1) sys.menuList[pos].sold += sys.orderList[i].quantity;
@@ -109,7 +110,6 @@ void ProcessPayment(System &sys) {
     SaveBill(sys);
     cout << "Payment success!\n";
 }
-
 
 
 

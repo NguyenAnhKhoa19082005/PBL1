@@ -27,8 +27,8 @@ void Print() {
 
     
 
-    cin.get(); // Dừng lại chờ người dùng nhấn Enter
-    system("cls"); // Xóa màn hình để vào phần đăng nhập
+    cin.get(); 
+    system("cls");
 }
 
 

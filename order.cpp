@@ -51,7 +51,7 @@ void ShowOrder(System &sys) {
         cout << left << setw(5)  << i + 1 
              << "| " << setw(30) << sys.orderList[i].name 
              << "| " << setw(10) << sys.orderList[i].quantity 
-             << "| " << money << " VND" << endl;
+             << "| " << money << " " << endl;
     }
     cout << "-------------------------------------------------------------\n";
 }
