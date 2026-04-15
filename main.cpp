@@ -1,8 +1,15 @@
 #include "struct.h"
-#include "system.h"
+#include "program.h"
 
-int main(){
+int main() {
     System sys;
-    Run(sys);
+    Start(sys);
+    ShowPBL();
+    while(true){
+        if(Login(sys)){
+            Systems(sys); 
+        } 
+        else break;
+    }
     return 0;
 }
