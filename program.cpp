@@ -7,7 +7,6 @@
 
 using namespace std;
 
-
 void ShowPBL() {
     cout << "==================================================================================================\n";
     cout << "|                                                                                                |\n";
@@ -28,12 +27,10 @@ void ShowPBL() {
     system("cls");
 }
 
-
 void Start(System &sys) {
     Read_Menu(sys);
     Read_Staff(sys);
 }
-
 
 bool Login(System &sys) {
     string id, pass;
@@ -74,33 +71,46 @@ bool Login(System &sys) {
     }
 }
 
-
 void Systems(System &sys) {
     bool inSession = true;
     while (inSession) {
         bool NewCustomer = true;
-      
-        while (NewCustomer) {
+        while (NewCustomer){
             StartOrder(sys); 
-            
             char check;
-            cout << "\nNew Customer? (Y/N): ";
-            cin >> check; cin.ignore();
-            
-            if (check == 'N' || check == 'n') {
-                NewCustomer = false;
+            while (true){
+                cout << "\nNew Customer? (Y/N): ";
+                cin >> check; 
+                cin.ignore(1000, '\n'); 
+
+                if (check == 'Y' || check == 'y') {
+                    break; 
+                }
+                else if (check == 'N' || check == 'n') {
+                    NewCustomer = false; 
+                    break;
+                }
+                else {
+                    cout << "Wrong code!"; 
+                }
             }
             system("cls"); 
         }
 
-      
         while (true) {
             cout << "================================\n";
             cout << "1. End Shift\n";
             cout << "2. End Day\n";
             cout << "Option: ";
             int choice; 
-            cin >> choice; cin.ignore();
+            cin >> choice; 
+            if (cin.fail()) {
+                cout << "Wrong code!\n";
+                cin.clear();         
+                cin.ignore(1000, '\n'); 
+                continue;           
+            }
+            cin.ignore(); 
 
             if (choice == 1) {
                 sys.staffList[sys.currentStaff].logout = getCurrentTime();
@@ -115,7 +125,6 @@ void Systems(System &sys) {
                 SaveEndShift(sys); 
                 SaveThongKe(sys);
                 exit(0);
-
             } 
             else {
                 cout << "Wrong code!\n";
