@@ -18,17 +18,14 @@ void SaveBill(System &sys) {
     f << "----------------------------------------------------------------------------\n";
     f << "|" << right << setw(40) << "CUSTOMER " << customerCount++ << setw(35) << " |\n";
     f << "----------------------------------------------------------------------------\n";
-    
     f << "Cashier's name: " << sys.staffList[sys.currentStaff].name << "\n";
     f << "Time in:  " << dateStr << " " << currentTime << "\n";
     f << "Time out: " << dateStr << " " << currentTime << "\n\n";
-
     f << left << setw(35) << "| Description" 
       << "| " << setw(10) << "Quantity" 
       << "| " << setw(12) << "Unit price" 
       << "| " << setw(12) << "Into money" << "|\n";
     f << "----------------------------------------------------------------------------\n";
-
     long long rawTotal = 0;
     for (int i = 0; i < sys.orderCount; i++) {
         long long price = sys.orderList[i].price;
@@ -43,15 +40,12 @@ void SaveBill(System &sys) {
     }
 
     f << "---------------------------------------------------------------------------\n\n";
-
     long long finalTotal = CalcTotal(sys);
     long long discount = rawTotal - finalTotal;
-
     f << "Total: " << rawTotal << " VND\n";
     f << "Discount: " << discount << " VND\n";
     f << "Total after discount: " << finalTotal << " VND\n";
     f << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n\n";
-
     f.close();
 }
 

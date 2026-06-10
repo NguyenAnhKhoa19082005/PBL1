@@ -4,7 +4,6 @@
 int main() {
     System sys;
     Start(sys);
-    ShowPBL();
     while(true){
         if(Login(sys)){
             Systems(sys); 
