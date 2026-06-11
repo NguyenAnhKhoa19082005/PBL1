@@ -88,9 +88,9 @@ void AddDrink(System &sys) {
 
 void ChangeDrink(System &sys) {
     ShowOrder(sys);
-    int pos, qty;
+    int stt, qty;
     cout << "Choose item number: "; 
-    cin >> pos; 
+    cin >> stt; 
 
     if (cin.fail()) {
         cout << "Wrong code!\n";
@@ -98,8 +98,8 @@ void ChangeDrink(System &sys) {
         return;
     }   
 
-    pos--;
-    if (pos < 0 || pos >= sys.orderCount) {
+    stt--;
+    if (stt < 0 || stt >= sys.orderCount) {
         cout << "Wrong code!\n"; return;
     }
 
@@ -111,14 +111,14 @@ void ChangeDrink(System &sys) {
         cin.clear(); cin.ignore(1000, '\n');
         return;
     }   
-    else sys.orderList[pos].quantity = qty;
+    else sys.orderList[stt].quantity = qty;
 }
 
 void DeleteDrink(System &sys) {
     ShowOrder(sys);
-    int pos;
+    int stt;
     cout << "Choose item number: "; 
-    cin >> pos; 
+    cin >> stt; 
 
     if (cin.fail()) {
         cout << "Wrong code!\n";
@@ -126,11 +126,11 @@ void DeleteDrink(System &sys) {
         return;
     }
 
-    pos--;
-    if (pos < 0 || pos >= sys.orderCount) {
+    stt--;
+    if (stt < 0 || stt >= sys.orderCount) {
         cout << "Wrong code!\n"; return;
     }
-    for (int i = pos; i < sys.orderCount - 1; i++)
+    for (int i = stt; i < sys.orderCount - 1; i++)
         sys.orderList[i] = sys.orderList[i + 1];
     sys.orderCount--;
 }
@@ -169,7 +169,7 @@ void StartOrder(System &sys) {
 
         int pos = findDrink(sys, id);
         if (pos == -1) { 
-            cout << "Wrong id!\n"; 
+            cout << "Wrong code!\n"; 
             continue; 
         }
 
@@ -202,6 +202,12 @@ void StartOrder(System &sys) {
             bool backToPayment = false;
             while (!backToPayment) {
                 char option = OrderMenu();
+                if (option == 'a' || option == 'b' || option == 'c' || option == 'd' || option == 'e') {
+                        break; 
+                    } else {
+                        cout << "Wrong code!\n"; 
+                    }
+
                 if (option == 'a') AddDrink(sys); 
                 else if (option == 'b') ChangeDrink(sys);
                 else if (option == 'c') DeleteDrink(sys);
@@ -213,9 +219,6 @@ void StartOrder(System &sys) {
                 
                 if (option != 'd') ShowOrder(sys);
             }
-        }
-        else {
-            cout << "Wrong code!\n";
         }
     }
 }

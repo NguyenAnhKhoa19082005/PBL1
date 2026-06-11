@@ -3,6 +3,17 @@
 #include "order.h"
 #include "prac.h"
 
+
+
+long long CalcTotal(System &sys) {
+    long long total = 0;
+    for (int i = 0; i < sys.orderCount; i++)
+        total += (long long)sys.orderList[i].price * sys.orderList[i].quantity;
+    if (total >= 2000000) total *= 0.75;
+    return total;
+}
+
+
 void SaveBill(System &sys) {
     string dateStr = getCurrentDate();
     string filename = "data/output/" + dateStr + "_" +
@@ -60,15 +71,6 @@ void SaveEndShift(System &sys) {
     ofstream f(filename.c_str(), ios::app);
     f << "\nTotal Shift: " << sys.staffList[sys.currentStaff].revenue << " VND\n";
     f.close();
-}
-
-
-long long CalcTotal(System &sys) {
-    long long total = 0;
-    for (int i = 0; i < sys.orderCount; i++)
-        total += (long long)sys.orderList[i].price * sys.orderList[i].quantity;
-    if (total >= 2000000) total *= 0.8;
-    return total;
 }
 
 
