@@ -201,12 +201,16 @@ void StartOrder(System &sys) {
         else if (confirm == 'N' || confirm == 'n') {
             bool backToPayment = false;
             while (!backToPayment) {
-                char option = OrderMenu();
-                if (option == 'a' || option == 'b' || option == 'c' || option == 'd' || option == 'e') {
+                char option;
+                while (true) {
+                    option = OrderMenu();
+                    
+                    if (option == 'a' || option == 'b' || option == 'c' || option == 'd' || option == 'e') {
                         break; 
                     } else {
                         cout << "Wrong code!\n"; 
                     }
+                }
 
                 if (option == 'a') AddDrink(sys); 
                 else if (option == 'b') ChangeDrink(sys);
