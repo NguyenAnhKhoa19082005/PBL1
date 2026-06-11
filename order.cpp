@@ -220,5 +220,8 @@ void StartOrder(System &sys) {
                 if (option != 'd') ShowOrder(sys);
             }
         }
+        else {
+            cout << "Wrong code!\n";
+        }
     }
 }
