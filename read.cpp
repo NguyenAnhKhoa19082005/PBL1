@@ -21,7 +21,7 @@ void Read_Menu(System &sys) {
         getline(f, sys.menuList[sys.menuCount].name, ',');
         f >> sys.menuList[sys.menuCount].price;
         f.ignore();
-        sys.menuList[sys.menuCount].sold = 0;
+        sys.menuList[sys.menuCount].sold = 0; //so luong da ban trong ngay
         sys.menuCount++;
     }
     f.close();

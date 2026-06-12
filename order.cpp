@@ -77,11 +77,26 @@ void AddDrink(System &sys) {
         int pos = findDrink(sys, id);
         if (pos == -1) { cout << "Wrong id!\n"; continue; }
         
-        sys.orderList[sys.orderCount].id = sys.menuList[pos].id;
-        sys.orderList[sys.orderCount].name = sys.menuList[pos].name;
-        sys.orderList[sys.orderCount].price = sys.menuList[pos].price;
-        sys.orderList[sys.orderCount].quantity = qty;
-        sys.orderCount++;
+        int dupPos = -1; 
+        for (int i = 0; i < sys.orderCount; i++) {
+            if (sys.orderList[i].id == id) {
+                dupPos = i; 
+                break;
+            }
+        }
+
+       
+        if (dupPos != -1) {
+            sys.orderList[dupPos].quantity += qty;
+        } 
+        else {
+
+            sys.orderList[sys.orderCount].id = sys.menuList[pos].id;
+            sys.orderList[sys.orderCount].name = sys.menuList[pos].name;
+            sys.orderList[sys.orderCount].price = sys.menuList[pos].price;
+            sys.orderList[sys.orderCount].quantity = qty;
+            sys.orderCount++; 
+        }
         if (sys.orderCount >= 5) { cout << "Order full!\n"; break; }
     }
 }
@@ -94,7 +109,8 @@ void ChangeDrink(System &sys) {
 
     if (cin.fail()) {
         cout << "Wrong code!\n";
-        cin.clear(); cin.ignore(1000, '\n');
+        cin.clear(); 
+        cin.ignore(1000, '\n');
         return;
     }   
 
@@ -138,7 +154,8 @@ void DeleteDrink(System &sys) {
 char OrderMenu() {
     cout << "\na.Add  b.Change  c.Delete  d.Finish  e.Cancel\n";
     cout << "Option: ";
-    char option; cin >> option;
+    char option; 
+    cin >> option;
     return option;
 }
 
@@ -159,7 +176,7 @@ void StartOrder(System &sys) {
 
         if (cin.fail()) {
             cout << "Wrong code!\n";
-            cin.clear();
+            cin.clear();            //Xóa trạng thái lỗi của cin -> đưa cin trở lại trạng thái hoạt động bình thường.
             cin.ignore(1000, '\n');
             continue; 
         }
@@ -204,7 +221,6 @@ void StartOrder(System &sys) {
                 char option;
                 while (true) {
                     option = OrderMenu();
-                    
                     if (option == 'a' || option == 'b' || option == 'c' || option == 'd' || option == 'e') {
                         break; 
                     } else {

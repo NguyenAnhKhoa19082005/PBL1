@@ -37,8 +37,6 @@ bool Login(System &sys) {
         cout << "Login Staff's ID: ";
         getline(cin, id);
 
-        if (id == "exit") return false;
-
         int pos = -1;
         for (int i = 0; i < sys.staffCount; i++) {
             if (sys.staffList[i].id == id) {
@@ -60,7 +58,7 @@ bool Login(System &sys) {
             continue;
         }
 
-        sys.currentStaff = pos;
+        sys.currentStaff = pos; 
         sys.staffList[pos].login = getCurrentTime();
         
         system("cls"); 
